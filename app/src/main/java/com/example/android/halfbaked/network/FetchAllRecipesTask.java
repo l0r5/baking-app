@@ -8,6 +8,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.android.halfbaked.data.DataFormatUtils;
 import com.example.android.halfbaked.models.Recipe;
 
 import java.net.URL;
@@ -50,13 +51,8 @@ public class FetchAllRecipesTask implements LoaderManager.LoaderCallbacks<Recipe
 
                 try {
                     String jsonRecipeResponse = NetworkUtils.getResponseFromHttpUrl(recipeRequestUrl);
-
-                    // TODO DataFormUtil json -> objects
-
-                    Log.i(TAG, "Incoming Recipe JSON:");
-                    Log.i(TAG, jsonRecipeResponse);
-
-                    return null;
+                    Recipe[] recipeData = DataFormatUtils.getRecipeObjectsFromJson(jsonRecipeResponse);
+                    return recipeData;
 
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -2,13 +2,13 @@ package com.example.android.halfbaked.models;
 
 
 public class Ingredient {
-    private String mName;
     private double mQuantity;
     private String mMeasure;
+    private String mIngredient;
 
-    public Ingredient(String name, double quantity, String measure) {
-        mName = name;
+    public Ingredient(double quantity, String measure, String ingredient) {
         mQuantity = quantity;
         mMeasure = measure;
+        mIngredient = ingredient;
     }
 }

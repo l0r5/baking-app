@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity implements FetchAllRecipesTa
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int FETCH_ALL_RECIPES_LOADER_ID = 1;
+    RecipeCollectionFragment mRecipeCollectionFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +22,10 @@ public class MainActivity extends AppCompatActivity implements FetchAllRecipesTa
         setContentView(R.layout.activity_main);
 
         loadRecipeData();
-
-        RecipeCollectionFragment recipeCollectionFragment = new RecipeCollectionFragment();
+        mRecipeCollectionFragment = new RecipeCollectionFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .add(R.id.recipe_collection_container, recipeCollectionFragment)
+                .add(R.id.recipe_collection_container, mRecipeCollectionFragment)
                 .commit();
     }
 
@@ -35,7 +35,12 @@ public class MainActivity extends AppCompatActivity implements FetchAllRecipesTa
     }
 
     @Override
-    public void onFetchAllRecipesTaskCompleted(Recipe[] recipes) {
-        Log.i(TAG, "Successful fetched!");
+    public void onFetchAllRecipesTaskCompleted(Recipe[] recipeData) {
+        if (recipeData != null) {
+            mRecipeCollectionFragment.setAllRecipes(recipeData);
+            Log.i(TAG, "Successfully fetched Recipe Data!");
+        } else {
+            Log.e(TAG, "Error fetching Recipe Data!");
+        }
     }
 }

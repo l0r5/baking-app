@@ -1,0 +1,16 @@
+<resources>
+
+    <!-- Text Sizes -->
+    <dimen name="text_size_s">18sp</dimen>
+    <dimen name="text_size_m">22sp</dimen>
+    <dimen name="text_size_l">30sp</dimen>
+
+    <!-- Card Dimens -->
+    <dimen name="card_padding_s">8dp</dimen>
+    <dimen name="card_padding_m">16dp</dimen>
+
+    <dimen name="card_margin_m">16dp</dimen>
+
+    <dimen name="card_letter_space_m">8dp</dimen>
+
+</resources>

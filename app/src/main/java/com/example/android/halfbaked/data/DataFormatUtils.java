@@ -26,7 +26,7 @@ public final class DataFormatUtils {
         JSONArray jsonRecipeArray = new JSONArray(jsonRecipeString);
         Recipe[] parsedRecipeData = new Recipe[jsonRecipeArray.length()];
 
-        // build recipe object array
+        // build default_recipe_image object array
         for (int i = 0; i < jsonRecipeArray.length(); i++) {
 
             JSONObject recipes = jsonRecipeArray.getJSONObject(i);

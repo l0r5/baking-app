@@ -16,14 +16,13 @@ import java.net.URL;
 
 public class FetchAllRecipesTask implements LoaderManager.LoaderCallbacks<Recipe[]> {
 
-    public interface FetchAllRecipesCallback {
-
-        void onFetchAllRecipesTaskCompleted(Recipe[] recipes);
-    }
-
     private static final String TAG = FetchAllRecipesTask.class.getSimpleName();
     private FetchAllRecipesCallback mCallback;
     private Context mContext;
+
+    public interface FetchAllRecipesCallback {
+        void onFetchAllRecipesTaskCompleted(Recipe[] recipes);
+    }
 
     public FetchAllRecipesTask(FetchAllRecipesCallback callback, Context context) {
         this.mCallback = callback;

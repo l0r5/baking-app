@@ -1,4 +1,4 @@
-package com.example.android.halfbaked.ui;
+package com.example.android.halfbaked.ui.collection;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -15,13 +15,13 @@ import com.squareup.picasso.Picasso;
 
 public class RecipeCollectionAdapter extends RecyclerView.Adapter<RecipeCollectionAdapter.RecipeCollectionAdapterViewHolder> {
 
-    public interface RecipeCollectionAdapterOnClickHandler {
-
-    }
-
     private static final String TAG = RecipeCollectionAdapter.class.getSimpleName();
     private Recipe[] mAllRecipes;
     final private RecipeCollectionAdapterOnClickHandler mClickHandler;
+
+    public interface RecipeCollectionAdapterOnClickHandler {
+        void onClick(Recipe recipeDetails);
+    }
 
     public RecipeCollectionAdapter(RecipeCollectionAdapterOnClickHandler clickHandler) {
         mClickHandler = clickHandler;
@@ -45,7 +45,8 @@ public class RecipeCollectionAdapter extends RecyclerView.Adapter<RecipeCollecti
         public void onClick(View view) {
             int adapterPosition = getAdapterPosition();
             Recipe recipe = mAllRecipes[adapterPosition];
-            Log.i(TAG, "Item #" + adapterPosition + " clicked.");
+            Log.i(TAG, recipe.getName() + " clicked.");
+            mClickHandler.onClick(recipe);
         }
     }
 

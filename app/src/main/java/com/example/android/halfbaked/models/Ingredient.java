@@ -15,6 +15,18 @@ public class Ingredient implements Parcelable {
         mIngredient = ingredient;
     }
 
+    public double getQuantity() {
+        return mQuantity;
+    }
+
+    public String getMeasure() {
+        return mMeasure;
+    }
+
+    public String getIngredient() {
+        return mIngredient;
+    }
+
     private Ingredient(Parcel in) {
         mQuantity = in.readDouble();
         mMeasure = in.readString();

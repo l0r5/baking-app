@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.halfbaked.ui.MainActivity">
+    tools:context="com.example.android.halfbaked.ui.collection.RecipeCollectionActivity">
 
     <FrameLayout
-        android:id="@+id/recipe_collection_container"
+        android:id="@+id/recipe_detail_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

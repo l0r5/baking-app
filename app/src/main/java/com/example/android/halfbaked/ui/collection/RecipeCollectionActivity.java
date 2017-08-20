@@ -1,4 +1,4 @@
-package com.example.android.halfbaked.ui;
+package com.example.android.halfbaked.ui.collection;
 
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.FragmentManager;
@@ -10,16 +10,16 @@ import com.example.android.halfbaked.R;
 import com.example.android.halfbaked.models.Recipe;
 import com.example.android.halfbaked.network.FetchAllRecipesTask;
 
-public class MainActivity extends AppCompatActivity implements FetchAllRecipesTask.FetchAllRecipesCallback {
+public class RecipeCollectionActivity extends AppCompatActivity implements FetchAllRecipesTask.FetchAllRecipesCallback {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = RecipeCollectionActivity.class.getSimpleName();
     private static final int FETCH_ALL_RECIPES_LOADER_ID = 1;
-    RecipeCollectionFragment mRecipeCollectionFragment;
+    private RecipeCollectionFragment mRecipeCollectionFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_recipe_collection);
 
         loadRecipeData();
         mRecipeCollectionFragment = new RecipeCollectionFragment();

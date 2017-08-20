@@ -26,6 +26,10 @@ public class Recipe implements Parcelable{
         return mName;
     }
 
+    public Ingredient[] getIngredients() {
+        return mIngredients;
+    }
+
     public int getServings() {
         return mServings;
     }

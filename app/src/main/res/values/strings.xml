@@ -2,7 +2,10 @@
     <string name="app_name">Half Baked</string>
 
     <!--Recipe Collection-->
-    <string name="servings">Servings: </string>
+    <string name="servings">Servings:</string>
+
+    <!--Recipe Details-->
+    <string name="ingredients">Ingredients:</string>
 
 
 </resources>

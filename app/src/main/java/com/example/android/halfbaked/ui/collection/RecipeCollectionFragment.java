@@ -1,10 +1,9 @@
-package com.example.android.halfbaked.ui;
+package com.example.android.halfbaked.ui.collection;
 
-import android.content.res.Configuration;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,10 +12,12 @@ import android.view.ViewGroup;
 
 import com.example.android.halfbaked.R;
 import com.example.android.halfbaked.models.Recipe;
+import com.example.android.halfbaked.ui.details.RecipeDetailActivity;
 
 
 public class RecipeCollectionFragment extends Fragment implements RecipeCollectionAdapter.RecipeCollectionAdapterOnClickHandler {
 
+    public static final String INTENT_RECIPE_DETAIL_KEY = "recipeDetailKey";
     private Recipe[] mAllRecipes;
     RecipeCollectionAdapter mRecipeCollectionAdapter;
 
@@ -44,5 +45,12 @@ public class RecipeCollectionFragment extends Fragment implements RecipeCollecti
     public void setAllRecipes(Recipe[] allRecipes) {
         mAllRecipes = allRecipes;
         mRecipeCollectionAdapter.setRecipeData(mAllRecipes);
+    }
+
+    @Override
+    public void onClick(Recipe recipeDetails) {
+        Intent intentToStartActivity = new Intent(getActivity(), RecipeDetailActivity.class);
+        intentToStartActivity.putExtra(INTENT_RECIPE_DETAIL_KEY, recipeDetails);
+        startActivity(intentToStartActivity);
     }
 }

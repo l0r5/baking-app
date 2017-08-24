@@ -30,6 +30,10 @@ public class Recipe implements Parcelable{
         return mIngredients;
     }
 
+    public Step[] getSteps() {
+        return mSteps;
+    }
+
     public int getServings() {
         return mServings;
     }

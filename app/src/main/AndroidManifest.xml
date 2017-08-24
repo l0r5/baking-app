@@ -19,11 +19,11 @@
             </intent-filter>
         </activity>
         <!-- Recipe Detail Activity-->
-        <activity android:name=".ui.details.RecipeDetailActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".ui.details.RecipeDetailActivity"
+            android:parentActivityName=".ui.collection.RecipeCollectionActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.collection.RecipeCollectionActivity" />
         </activity>
     </application>
 

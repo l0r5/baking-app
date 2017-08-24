@@ -16,6 +16,10 @@ public class RecipeIngredientsAdapter extends RecyclerView.Adapter<RecipeIngredi
     private static final String TAG = RecipeIngredientsAdapter.class.getSimpleName();
     private Ingredient[] mIngredients;
 
+    public RecipeIngredientsAdapter(Ingredient[] ingredients) {
+        mIngredients = ingredients;
+    }
+
     public class RecipeIngredientsAdapterViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView mIngredientText;
@@ -52,8 +56,4 @@ public class RecipeIngredientsAdapter extends RecyclerView.Adapter<RecipeIngredi
         return mIngredients.length;
     }
 
-    public void setIngredientData(Ingredient[] ingredientData) {
-        mIngredients = ingredientData;
-        notifyDataSetChanged();
-    }
 }

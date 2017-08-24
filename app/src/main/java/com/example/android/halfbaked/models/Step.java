@@ -20,6 +20,14 @@ public class Step implements Parcelable {
         mThumbnailUrl = thumbnailUrl;
     }
 
+    public int getId() {
+        return mId;
+    }
+
+    public String getShortDescription() {
+        return mShortDescription;
+    }
+
     protected Step(Parcel in) {
         mId = in.readInt();
         mShortDescription = in.readString();

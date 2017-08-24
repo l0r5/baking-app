@@ -5,7 +5,7 @@
     <string name="servings">Servings:</string>
 
     <!--Recipe Details-->
-    <string name="ingredients">Ingredients:</string>
+    <string name="ingredients">Ingredients</string>
 
 
 </resources>

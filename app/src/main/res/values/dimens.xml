@@ -6,10 +6,14 @@
     <dimen name="text_size_l">30sp</dimen>
 
     <!-- Card Dimens -->
+    <dimen name="card_margin_s">2dp</dimen>
+    <dimen name="card_margin_m">5dp</dimen>
+    <dimen name="card_margin_l">10dp</dimen>
+
     <dimen name="card_padding_s">8dp</dimen>
     <dimen name="card_padding_m">16dp</dimen>
 
-    <dimen name="card_margin_m">16dp</dimen>
+    <dimen name="card_default_elevation">2dp</dimen>
 
     <dimen name="card_letter_space_m">8dp</dimen>
 

@@ -17,7 +17,7 @@ public class RecipeCollectionAdapter extends RecyclerView.Adapter<RecipeCollecti
 
     private static final String TAG = RecipeCollectionAdapter.class.getSimpleName();
     private Recipe[] mAllRecipes;
-    final private RecipeCollectionAdapterOnClickHandler mClickHandler;
+    private RecipeCollectionAdapterOnClickHandler mClickHandler;
 
     public interface RecipeCollectionAdapterOnClickHandler {
         void onClick(Recipe recipeDetails);

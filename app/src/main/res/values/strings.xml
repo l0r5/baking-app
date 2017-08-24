@@ -7,5 +7,9 @@
     <!--Recipe Details-->
     <string name="ingredients">Ingredients</string>
 
+    <!--Step Details-->
+    <string name="previous_step">Previous Step</string>
+    <string name="next_step">Next Step</string>
+
 
 </resources>

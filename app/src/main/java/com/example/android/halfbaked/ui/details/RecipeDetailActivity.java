@@ -13,6 +13,7 @@ import static com.example.android.halfbaked.ui.collection.RecipeCollectionFragme
 
 public class RecipeDetailActivity extends AppCompatActivity{
 
+    public static final String STEP_BUNDLE = "step_bundle";
     private static final String TAG = RecipeDetailActivity.class.getSimpleName();
     private RecipeDetailFragment mRecipeDetailFragment;
     private Recipe mRecipeDetails;

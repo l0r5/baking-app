@@ -28,6 +28,18 @@ public class Step implements Parcelable {
         return mShortDescription;
     }
 
+    public String getDescription() {
+        return mDescription;
+    }
+
+    public String mVideoUrl() {
+        return mVideoUrl;
+    }
+
+    public String mThumbnailUrl() {
+        return mThumbnailUrl;
+    }
+
     protected Step(Parcel in) {
         mId = in.readInt();
         mShortDescription = in.readString();

@@ -4,6 +4,7 @@ package com.example.android.halfbaked.ui.details;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import com.example.android.halfbaked.models.Step;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+import static com.example.android.halfbaked.ui.details.RecipeDetailActivity.STEP_BUNDLE;
 
 public class RecipeDetailFragment extends Fragment implements RecipeStepsAdapter.RecipeStepsAdapterOnClickHandler {
 
@@ -85,6 +87,14 @@ public class RecipeDetailFragment extends Fragment implements RecipeStepsAdapter
 
     @Override
     public void onClick(Step stepDetails) {
+        StepDetailFragment stepDetailFragment = new StepDetailFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(STEP_BUNDLE, stepDetails);
+        stepDetailFragment.setArguments(bundle);
 
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.recipe_detail_container, stepDetailFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }

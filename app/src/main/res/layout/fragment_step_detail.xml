@@ -1,83 +1,89 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.android.halfbaked.ui.details.StepDetailFragment">
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cv_step_video"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/card_margin_m"
-        android:layout_marginLeft="@dimen/card_margin_l"
-        android:layout_marginRight="@dimen/card_margin_l"
-        android:layout_marginTop="@dimen/card_margin_m"
-        app:cardElevation="@dimen/card_default_elevation"
-        app:cardUseCompatPadding="true">
+        android:orientation="vertical"
+        tools:context="com.example.android.halfbaked.ui.details.StepDetailFragment">
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv_step_video"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/card_padding_m">
+            android:layout_marginBottom="@dimen/card_margin_m"
+            android:layout_marginLeft="@dimen/card_margin_l"
+            android:layout_marginRight="@dimen/card_margin_l"
+            android:layout_marginTop="@dimen/card_margin_m"
+            app:cardElevation="@dimen/card_default_elevation"
+            app:cardUseCompatPadding="true">
 
-        <TextView
-            android:id="@+id/tv_recipe_step_short_description"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding_m">
+
+                <TextView
+                    android:id="@+id/tv_recipe_step_short_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/card_padding_m"
+                    android:textSize="@dimen/text_size_m"
+                    tools:text="1. Starting Prep" />
+
+                <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+                    android:id="@+id/pv_recipe_step_video"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv_step_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/card_padding_m"
-            android:textSize="@dimen/text_size_m"
-            tools:text="1. Starting Prep" />
+            android:layout_marginBottom="@dimen/card_margin_m"
+            android:layout_marginLeft="@dimen/card_margin_l"
+            android:layout_marginRight="@dimen/card_margin_l"
+            android:layout_marginTop="@dimen/card_margin_m"
+            app:cardElevation="@dimen/card_default_elevation"
+            app:cardUseCompatPadding="true">
 
-        <TextView
+            <TextView
+                android:id="@+id/tv_recipe_step_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/card_padding_m"
+                android:textSize="@dimen/text_size_m" />
+
+        </android.support.v7.widget.CardView>
+
+        <Button
+            android:id="@+id/btn_previous_step"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="EXOPLAYER" />
-        </LinearLayout>
+            android:layout_marginBottom="@dimen/card_margin_m"
+            android:layout_marginLeft="@dimen/card_margin_l"
+            android:layout_marginRight="@dimen/card_margin_l"
+            android:layout_marginTop="@dimen/card_margin_m"
+            android:text="@string/previous_step" />
 
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/cv_step_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/card_margin_m"
-        android:layout_marginLeft="@dimen/card_margin_l"
-        android:layout_marginRight="@dimen/card_margin_l"
-        android:layout_marginTop="@dimen/card_margin_m"
-        app:cardElevation="@dimen/card_default_elevation"
-        app:cardUseCompatPadding="true">
-
-        <TextView
-            android:id="@+id/tv_recipe_step_description"
+        <Button
+            android:id="@+id/btn_next_step"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/card_padding_m"
-            android:textSize="@dimen/text_size_m" />
-
-    </android.support.v7.widget.CardView>
-
-    <Button
-        android:id="@+id/btn_previous_step"
-        android:text="@string/previous_step"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/card_margin_m"
-        android:layout_marginLeft="@dimen/card_margin_l"
-        android:layout_marginRight="@dimen/card_margin_l"
-        android:layout_marginTop="@dimen/card_margin_m" />
-
-    <Button
-        android:id="@+id/btn_next_step"
-        android:text="@string/next_step"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/card_margin_m"
-        android:layout_marginLeft="@dimen/card_margin_l"
-        android:layout_marginRight="@dimen/card_margin_l"
-        android:layout_marginTop="@dimen/card_margin_m" />
+            android:layout_marginBottom="@dimen/card_margin_m"
+            android:layout_marginLeft="@dimen/card_margin_l"
+            android:layout_marginRight="@dimen/card_margin_l"
+            android:layout_marginTop="@dimen/card_margin_m"
+            android:text="@string/next_step" />
 
 
-</LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

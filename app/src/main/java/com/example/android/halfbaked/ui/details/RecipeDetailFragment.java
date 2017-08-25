@@ -25,7 +25,7 @@ import static com.example.android.halfbaked.ui.details.RecipeDetailActivity.STEP
 public class RecipeDetailFragment extends Fragment implements RecipeStepsAdapter.RecipeStepsAdapterOnClickHandler {
 
     private Recipe mRecipeDetails;
-    RecyclerView mRecyclerViewIngredients;
+    private RecyclerView mRecyclerViewIngredients;
     private boolean mIngredientsExpanded = false;
 
     public RecipeDetailFragment() {

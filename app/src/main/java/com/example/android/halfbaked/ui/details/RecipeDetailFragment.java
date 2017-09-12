@@ -4,7 +4,6 @@ package com.example.android.halfbaked.ui.details;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,6 +19,8 @@ import com.example.android.halfbaked.models.Step;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+import static com.example.android.halfbaked.ui.details.RecipeDetailActivity.DEVICE_CHECK;
+import static com.example.android.halfbaked.ui.details.RecipeDetailActivity.RECIPE_BUNDLE;
 import static com.example.android.halfbaked.ui.details.RecipeDetailActivity.STEP_BUNDLE;
 
 public class RecipeDetailFragment extends Fragment implements RecipeStepsAdapter.RecipeStepsAdapterOnClickHandler {
@@ -27,8 +28,15 @@ public class RecipeDetailFragment extends Fragment implements RecipeStepsAdapter
     private Recipe mRecipeDetails;
     private RecyclerView mRecyclerViewIngredients;
     private boolean mIngredientsExpanded = false;
+    private boolean mTwoPane;
 
-    public RecipeDetailFragment() {
+    public static RecipeDetailFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        RecipeDetailFragment fragment = new RecipeDetailFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Nullable
@@ -36,10 +44,11 @@ public class RecipeDetailFragment extends Fragment implements RecipeStepsAdapter
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_recipe_detail, container, false);
 
-        if(mRecipeDetails != null) {
-            initializeIngredientsRecyclerView(rootView, mRecipeDetails.getIngredients());
-            initializeStepsRecyclerView(rootView, mRecipeDetails.getSteps());
-        }
+        mRecipeDetails = getArguments().getParcelable(RECIPE_BUNDLE);
+        mTwoPane = getArguments().getBoolean(DEVICE_CHECK);
+
+        initializeIngredientsRecyclerView(rootView, mRecipeDetails.getIngredients());
+        initializeStepsRecyclerView(rootView, mRecipeDetails.getSteps());
 
         return rootView;
     }
@@ -58,17 +67,17 @@ public class RecipeDetailFragment extends Fragment implements RecipeStepsAdapter
         // setting up recycler view for the steps
         RecyclerView recyclerViewSteps = view.findViewById(R.id.rv_recipe_steps);
         recyclerViewSteps.setLayoutManager(new LinearLayoutManager(getContext()));
-        RecipeStepsAdapter recipeStepsAdapter = new RecipeStepsAdapter(steps, this);
+        RecipeStepsAdapter recipeStepsAdapter = new RecipeStepsAdapter(getContext(), steps, this);
         recyclerViewSteps.setAdapter(recipeStepsAdapter);
     }
 
     private void initializeCollapsingIngredients(View view) {
         RelativeLayout ingredientsCollapsingLayout = view.findViewById(R.id.rl_recipe_ingredients_collapse);
         final ImageView collapseArrow = view.findViewById(R.id.iv_collapse_arrow);
-        ingredientsCollapsingLayout.setOnClickListener(new View.OnClickListener(){
+        ingredientsCollapsingLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mIngredientsExpanded) {
+                if (mIngredientsExpanded) {
                     mIngredientsExpanded = false;
                     collapseArrow.setImageResource(R.drawable.ic_keyboard_arrow_down);
                     mRecyclerViewIngredients.setVisibility(GONE);
@@ -81,20 +90,18 @@ public class RecipeDetailFragment extends Fragment implements RecipeStepsAdapter
         });
     }
 
-    public void setRecipeDetails(Recipe recipeDetails) {
-        mRecipeDetails = recipeDetails;
-    }
-
     @Override
     public void onClick(Step stepDetails) {
-        StepDetailFragment stepDetailFragment = new StepDetailFragment();
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(STEP_BUNDLE, stepDetails);
-        stepDetailFragment.setArguments(bundle);
 
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.recipe_detail_container, stepDetailFragment)
-                .addToBackStack(null)
-                .commit();
+        Bundle bundle = new Bundle();
+
+        if (mTwoPane) {
+            bundle.putParcelable(STEP_BUNDLE, stepDetails);
+            bundle.putBoolean(DEVICE_CHECK, mTwoPane);
+            ((RecipeDetailActivity) getActivity()).changeStepDetailFragmentTwoPane(StepDetailFragment.newInstance(), bundle);
+        } else {
+            bundle.putParcelable(STEP_BUNDLE, stepDetails);
+            ((RecipeDetailActivity) getActivity()).changeStepDetailFragment(StepDetailFragment.newInstance(), bundle);
+        }
     }
 }

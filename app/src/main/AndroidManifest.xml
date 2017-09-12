@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.halfbaked">
+    package="com.example.android.bakingapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,18 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <!-- Recipe Collection Activity-->
-        <activity android:name=".ui.collection.RecipeCollectionActivity">
+        <activity android:name="com.example.android.bakingapp.ui.collection.RecipeCollectionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <!-- Recipe Detail Activity-->
-        <activity android:name=".ui.details.RecipeDetailActivity"
-            android:parentActivityName=".ui.collection.RecipeCollectionActivity">
+        <activity android:name="com.example.android.bakingapp.ui.details.RecipeDetailActivity"
+            android:parentActivityName="com.example.android.bakingapp.ui.collection.RecipeCollectionActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.collection.RecipeCollectionActivity" />
+                android:value="com.example.android.bakingapp.ui.collection.RecipeCollectionActivity" />
         </activity>
     </application>
 

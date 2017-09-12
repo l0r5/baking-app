@@ -1,2 +1,2 @@
-# halfbaked
+# baking app
 Udacity Assignment Project

@@ -32,11 +32,11 @@ public class Step implements Parcelable {
         return mDescription;
     }
 
-    public String mVideoUrl() {
+    public String getVideoUrl() {
         return mVideoUrl;
     }
 
-    public String mThumbnailUrl() {
+    public String getThumbnailUrl() {
         return mThumbnailUrl;
     }
 

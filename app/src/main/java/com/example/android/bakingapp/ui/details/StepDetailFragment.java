@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.bakingapp.R;
@@ -25,6 +26,7 @@ import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
+import com.squareup.picasso.Picasso;
 
 import static android.view.View.GONE;
 import static com.example.android.bakingapp.ui.details.RecipeDetailActivity.DEVICE_CHECK;
@@ -65,13 +67,17 @@ public class StepDetailFragment extends Fragment {
 
         TextView shortDescription = rootView.findViewById(R.id.tv_recipe_step_short_description);
         TextView description = rootView.findViewById(R.id.tv_recipe_step_description);
+        ImageView thumbnail = rootView.findViewById(R.id.iv_step_thumbnail);
         mPlayerView = rootView.findViewById(R.id.pv_recipe_step_video);
+
+        if(!mStep.getThumbnailUrl().equals("")) {
+            Picasso.with(thumbnail.getContext()).load(mStep.getThumbnailUrl()).into(thumbnail);
+        }
 
         initializeButtons(rootView);
         shortDescription.setText(mStep.getShortDescription());
         description.setText(mStep.getDescription());
-        initializePlayer(Uri.parse(mStep.mVideoUrl()));
-
+        initializePlayer(Uri.parse(mStep.getVideoUrl()));
 
         return rootView;
     }
@@ -87,6 +93,7 @@ public class StepDetailFragment extends Fragment {
     public void onPause() {
         super.onPause();
         mExoPlayer.stop();
+        mExoPlayer.release();
     }
 
     private void initializePlayer(Uri mediaUri) {

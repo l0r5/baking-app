@@ -16,7 +16,9 @@ import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.models.Ingredient;
 import com.example.android.bakingapp.models.Recipe;
 import com.example.android.bakingapp.models.Step;
+import com.example.android.bakingapp.widget.SyncWidgetService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static android.view.View.GONE;
@@ -51,6 +53,9 @@ public class RecipeDetailFragment extends Fragment implements RecipeStepsAdapter
 
         initializeIngredientsRecyclerView(rootView, mRecipeDetails.getIngredients());
         initializeStepsRecyclerView(rootView, mRecipeDetails.getSteps());
+
+        //update widget
+        SyncWidgetService.startSyncWidgetService(getContext(), mRecipeDetails.getIngredients());
 
         return rootView;
     }

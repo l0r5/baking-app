@@ -58,17 +58,5 @@ public class RecipeCollectionActivity extends AppCompatActivity {
                 Log.v("Http fail: ", t.getMessage());
             }
         });
-
-
     }
-
-//    @Override
-//    public void onFetchAllRecipesTaskCompleted(Recipe[] recipeData) {
-//        if (recipeData != null) {
-//            mRecipeCollectionFragment.setAllRecipes(recipeData);
-//            Log.i(TAG, "Successfully fetched Recipe Data!");
-//        } else {
-//            Log.e(TAG, "Error fetching Recipe Data!");
-//        }
-//    }
 }

@@ -19,6 +19,14 @@ android {
     }
 }
 
+ext {
+    exoplayerVersion = 'r2.2.0'
+    gsonVersion = '2.7'
+    retrofitVersion = '2.3.0'
+    converterGsonVersion = '2.1.0'
+
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -30,11 +38,11 @@ dependencies {
     compile 'com.android.support:cardview-v7:26.0.+'
     compile 'com.android.support:recyclerview-v7:26.0.+'
     compile 'com.android.support:support-v4:26.+'
-    compile 'com.google.android.exoplayer:exoplayer:r2.2.0'
+    compile "com.google.android.exoplayer:exoplayer:$exoplayerVersion"
+    compile "com.google.code.gson:gson:$gsonVersion"
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    compile "com.squareup.retrofit2:converter-gson:$converterGsonVersion"
 
-    compile 'com.google.code.gson:gson:2.7'
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
 
     testCompile 'junit:junit:4.12'
     androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2.2', {

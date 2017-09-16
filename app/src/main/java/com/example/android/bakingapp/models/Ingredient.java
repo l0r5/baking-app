@@ -28,6 +28,7 @@ public class Ingredient implements Parcelable {
         ingredient = in.readString();
     }
 
+
     @Override
     public int describeContents() {
         return 0;

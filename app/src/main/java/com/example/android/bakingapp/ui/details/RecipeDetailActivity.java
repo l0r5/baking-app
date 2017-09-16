@@ -42,7 +42,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         // if no steps selected yet, start with step 1
         if (savedInstanceState == null) {
-            mSelectedStep = mRecipeDetails.getSteps()[0];
+            mSelectedStep = mRecipeDetails.getSteps().get(0);
 
             if (findViewById(R.id.recipe_detail_step_container) != null) {
                 // Tablet mode
@@ -120,19 +120,19 @@ public class RecipeDetailActivity extends AppCompatActivity {
     }
 
     public int getNumberOfRecipeSteps() {
-        return mRecipeDetails.getSteps().length;
+        return mRecipeDetails.getSteps().size();
     }
 
     public void getPreviousStepDetail(Step currentStep) {
         Bundle bundle = new Bundle();
-        Step previousStep = mRecipeDetails.getSteps()[currentStep.getId() - 1];
+        Step previousStep = mRecipeDetails.getSteps().get(currentStep.getId() - 1);
         bundle.putParcelable(STEP_BUNDLE, previousStep);
         changeStepDetailFragment(StepDetailFragment.newInstance(), bundle);
     }
 
     public void getNextStepDetail(Step currentStep) {
         Bundle bundle = new Bundle();
-        Step nextStep = mRecipeDetails.getSteps()[currentStep.getId() + 1];
+        Step nextStep = mRecipeDetails.getSteps().get(currentStep.getId() + 1);
         bundle.putParcelable(STEP_BUNDLE, nextStep);
         changeStepDetailFragment(StepDetailFragment.newInstance(), bundle);
     }

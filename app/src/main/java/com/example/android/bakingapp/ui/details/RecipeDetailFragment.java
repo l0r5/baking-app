@@ -17,6 +17,8 @@ import com.example.android.bakingapp.models.Ingredient;
 import com.example.android.bakingapp.models.Recipe;
 import com.example.android.bakingapp.models.Step;
 
+import java.util.List;
+
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static com.example.android.bakingapp.ui.details.RecipeDetailActivity.DEVICE_CHECK;
@@ -53,7 +55,7 @@ public class RecipeDetailFragment extends Fragment implements RecipeStepsAdapter
         return rootView;
     }
 
-    private void initializeIngredientsRecyclerView(View view, Ingredient[] ingredients) {
+    private void initializeIngredientsRecyclerView(View view, List<Ingredient> ingredients) {
         // setting up recycler view for the ingredients
         mRecyclerViewIngredients = view.findViewById(R.id.rv_recipe_ingredients);
         mRecyclerViewIngredients.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -63,7 +65,7 @@ public class RecipeDetailFragment extends Fragment implements RecipeStepsAdapter
         initializeCollapsingIngredients(view);
     }
 
-    private void initializeStepsRecyclerView(View view, Step[] steps) {
+    private void initializeStepsRecyclerView(View view, List<Step> steps) {
         // setting up recycler view for the steps
         RecyclerView recyclerViewSteps = view.findViewById(R.id.rv_recipe_steps);
         recyclerViewSteps.setLayoutManager(new LinearLayoutManager(getContext()));

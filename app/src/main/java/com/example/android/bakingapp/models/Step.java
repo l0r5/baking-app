@@ -6,46 +6,39 @@ import android.os.Parcelable;
 
 public class Step implements Parcelable {
 
-    private int mId;
-    private String mShortDescription;
-    private String mDescription;
-    private String mVideoUrl;
-    private String mThumbnailUrl;
+    private int id;
+    private String shortDescription;
+    private String description;
+    private String videoURL;
+    private String thumbnailURL;
 
-    public Step(int id, String shortDescription, String description, String videoUrl, String thumbnailUrl) {
-        mId = id;
-        mShortDescription = shortDescription;
-        mDescription = description;
-        mVideoUrl = videoUrl;
-        mThumbnailUrl = thumbnailUrl;
-    }
 
     public int getId() {
-        return mId;
+        return id;
     }
 
     public String getShortDescription() {
-        return mShortDescription;
+        return shortDescription;
     }
 
     public String getDescription() {
-        return mDescription;
+        return description;
     }
 
     public String getVideoUrl() {
-        return mVideoUrl;
+        return videoURL;
     }
 
     public String getThumbnailUrl() {
-        return mThumbnailUrl;
+        return thumbnailURL;
     }
 
     protected Step(Parcel in) {
-        mId = in.readInt();
-        mShortDescription = in.readString();
-        mDescription = in.readString();
-        mVideoUrl = in.readString();
-        mThumbnailUrl = in.readString();
+        id = in.readInt();
+        shortDescription = in.readString();
+        description = in.readString();
+        videoURL = in.readString();
+        thumbnailURL = in.readString();
     }
 
     @Override
@@ -55,11 +48,11 @@ public class Step implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(mId);
-        dest.writeString(mShortDescription);
-        dest.writeString(mDescription);
-        dest.writeString(mVideoUrl);
-        dest.writeString(mThumbnailUrl);
+        dest.writeInt(id);
+        dest.writeString(shortDescription);
+        dest.writeString(description);
+        dest.writeString(videoURL);
+        dest.writeString(thumbnailURL);
     }
 
     @SuppressWarnings("unused")

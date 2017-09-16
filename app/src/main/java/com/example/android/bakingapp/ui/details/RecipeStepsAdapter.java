@@ -12,13 +12,15 @@ import android.widget.TextView;
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.models.Step;
 
+import java.util.List;
+
 import static android.R.color.white;
 
 
 public class RecipeStepsAdapter extends RecyclerView.Adapter<RecipeStepsAdapter.RecipeStepsAdapterViewHolder> {
 
     private static final String TAG = RecipeStepsAdapter.class.getSimpleName();
-    private Step[] mSteps;
+    private List<Step> mSteps;
     private RecipeStepsAdapterOnClickHandler mClickHandler;
     private Context mContext;
     private int mPositionSelected;
@@ -27,7 +29,7 @@ public class RecipeStepsAdapter extends RecyclerView.Adapter<RecipeStepsAdapter.
         void onClick(Step stepDetails);
     }
 
-    public RecipeStepsAdapter(Context context, Step[] steps, RecipeStepsAdapterOnClickHandler clickHandler) {
+    public RecipeStepsAdapter(Context context, List<Step> steps, RecipeStepsAdapterOnClickHandler clickHandler) {
         mContext = context;
         mSteps = steps;
         mClickHandler = clickHandler;
@@ -49,7 +51,7 @@ public class RecipeStepsAdapter extends RecyclerView.Adapter<RecipeStepsAdapter.
         @Override
         public void onClick(View view) {
             int adapterPosition = getAdapterPosition();
-            Step step = mSteps[adapterPosition];
+            Step step = mSteps.get(adapterPosition);
             Log.i(TAG, step.getShortDescription() + " clicked.");
             setPositionSelected(adapterPosition);
             mClickHandler.onClick(step);
@@ -68,7 +70,7 @@ public class RecipeStepsAdapter extends RecyclerView.Adapter<RecipeStepsAdapter.
 
     @Override
     public void onBindViewHolder(RecipeStepsAdapterViewHolder holder, int position) {
-        String completeStepString = mSteps[position].getId() + ". " + mSteps[position].getShortDescription();
+        String completeStepString = mSteps.get(position).getId() + ". " + mSteps.get(position).getShortDescription();
         holder.mStepShortDescription.setText(completeStepString);
 
         if(position == mPositionSelected) {
@@ -83,7 +85,7 @@ public class RecipeStepsAdapter extends RecyclerView.Adapter<RecipeStepsAdapter.
     public int getItemCount() {
         if (null == mSteps)
             return 0;
-        return mSteps.length;
+        return mSteps.size();
     }
 
     private void setPositionSelected(int positionSelected) {

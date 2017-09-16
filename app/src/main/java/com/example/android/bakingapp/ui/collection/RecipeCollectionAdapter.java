@@ -13,10 +13,12 @@ import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.models.Recipe;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 public class RecipeCollectionAdapter extends RecyclerView.Adapter<RecipeCollectionAdapter.RecipeCollectionAdapterViewHolder> {
 
     private static final String TAG = RecipeCollectionAdapter.class.getSimpleName();
-    private Recipe[] mAllRecipes;
+    private ArrayList<Recipe> mAllRecipes;
     private RecipeCollectionAdapterOnClickHandler mClickHandler;
 
     public interface RecipeCollectionAdapterOnClickHandler {
@@ -44,7 +46,7 @@ public class RecipeCollectionAdapter extends RecyclerView.Adapter<RecipeCollecti
         @Override
         public void onClick(View view) {
             int adapterPosition = getAdapterPosition();
-            Recipe recipe = mAllRecipes[adapterPosition];
+            Recipe recipe = mAllRecipes.get(adapterPosition);
             Log.i(TAG, recipe.getName() + " clicked.");
             mClickHandler.onClick(recipe);
         }
@@ -62,9 +64,9 @@ public class RecipeCollectionAdapter extends RecyclerView.Adapter<RecipeCollecti
 
     @Override
     public void onBindViewHolder(RecipeCollectionAdapterViewHolder holder, int position) {
-        String recipeName = mAllRecipes[position].getName();
-        int recipeServings = mAllRecipes[position].getServings();
-        String recipeImageUrl = mAllRecipes[position].getImageUrl();
+        String recipeName = mAllRecipes.get(position).getName();
+        int recipeServings = mAllRecipes.get(position).getServings();
+        String recipeImageUrl = mAllRecipes.get(position).getImageUrl();
         if(recipeImageUrl == null || recipeImageUrl.equals("")) {
             Picasso.with(holder.mRecipeImage.getContext()).load(R.drawable.default_recipe_image).into(holder.mRecipeImage);
         } else {
@@ -78,10 +80,10 @@ public class RecipeCollectionAdapter extends RecyclerView.Adapter<RecipeCollecti
     public int getItemCount() {
         if (null == mAllRecipes)
             return 0;
-        return mAllRecipes.length;
+        return mAllRecipes.size();
     }
 
-    public void setRecipeData(Recipe[] recipeData) {
+    public void setRecipeData(ArrayList<Recipe> recipeData) {
         mAllRecipes = recipeData;
         notifyDataSetChanged();
     }

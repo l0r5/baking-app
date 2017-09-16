@@ -14,11 +14,13 @@ import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.models.Recipe;
 import com.example.android.bakingapp.ui.details.RecipeDetailActivity;
 
+import java.util.ArrayList;
+
 
 public class RecipeCollectionFragment extends Fragment implements RecipeCollectionAdapter.RecipeCollectionAdapterOnClickHandler {
 
     public static final String INTENT_RECIPE_DETAIL_KEY = "recipeDetailKey";
-    private Recipe[] mAllRecipes;
+    private ArrayList<Recipe> mAllRecipes;
     RecipeCollectionAdapter mRecipeCollectionAdapter;
 
     public RecipeCollectionFragment() {
@@ -42,7 +44,7 @@ public class RecipeCollectionFragment extends Fragment implements RecipeCollecti
 
     }
 
-    public void setAllRecipes(Recipe[] allRecipes) {
+    public void setAllRecipes(ArrayList<Recipe> allRecipes) {
         mAllRecipes = allRecipes;
         mRecipeCollectionAdapter.setRecipeData(mAllRecipes);
     }

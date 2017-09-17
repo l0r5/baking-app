@@ -1,6 +1,7 @@
 package com.example.android.bakingapp.ui.details;
 
 import android.net.Uri;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -57,7 +58,7 @@ public class StepDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_step_detail, container, false);
 
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
             mStep = savedInstanceState.getParcelable(STEP_BUNDLE);
             mTwoPane = savedInstanceState.getBoolean(DEVICE_CHECK);
         } else {
@@ -70,7 +71,7 @@ public class StepDetailFragment extends Fragment {
         ImageView thumbnail = rootView.findViewById(R.id.iv_step_thumbnail);
         mPlayerView = rootView.findViewById(R.id.pv_recipe_step_video);
 
-        if(!mStep.getThumbnailUrl().equals("")) {
+        if (!mStep.getThumbnailUrl().equals("")) {
             Picasso.with(thumbnail.getContext()).load(mStep.getThumbnailUrl()).into(thumbnail);
         }
 
@@ -94,6 +95,14 @@ public class StepDetailFragment extends Fragment {
         super.onPause();
         mExoPlayer.stop();
         mExoPlayer.release();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mStep.getVideoUrl() != null) {
+            Uri.parse(mStep.getVideoUrl());
+        }
     }
 
     private void initializePlayer(Uri mediaUri) {

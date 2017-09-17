@@ -36,10 +36,10 @@ public class RecipeCollectionActivityTest2 {
     public ActivityTestRule<RecipeCollectionActivity> mActivityTestRule = new ActivityTestRule<>(RecipeCollectionActivity.class);
 
     @Test
-    public void recipeDetailActivityTest() {
+    public void recipeCollectionActivityTest2() {
         ViewInteraction recyclerView = onView(
                 allOf(withId(R.id.rv_recipe_collection), isDisplayed()));
-        recyclerView.perform(actionOnItemAtPosition(1, click()));
+        recyclerView.perform(actionOnItemAtPosition(0, click()));
 
         ViewInteraction recyclerView2 = onView(
                 allOf(withId(R.id.rv_recipe_steps), isDisplayed()));
@@ -54,18 +54,8 @@ public class RecipeCollectionActivityTest2 {
             e.printStackTrace();
         }
 
-        ViewInteraction view = onView(
-                allOf(childAtPosition(
-                        allOf(withId(R.id.exo_content_frame),
-                                childAtPosition(
-                                        withId(R.id.pv_recipe_step_video),
-                                        0)),
-                        0),
-                        isDisplayed()));
-        view.check(matches(isDisplayed()));
-
         ViewInteraction textView = onView(
-                allOf(withId(R.id.tv_recipe_step_description), withText("2. Melt the butter and bittersweet chocolate together in a microwave or a double boiler. If microwaving, heat for 30 seconds at a time, removing bowl and stirring ingredients in between."),
+                allOf(withId(R.id.tv_recipe_step_description), withText("2. Whisk the graham cracker crumbs, 50 grams (1/4 cup) of sugar, and 1/2 teaspoon of salt together in a medium bowl. Pour the melted butter and 1 teaspoon of vanilla into the dry ingredients and stir together until evenly mixed."),
                         childAtPosition(
                                 allOf(withId(R.id.cv_step_description),
                                         childAtPosition(
@@ -73,7 +63,7 @@ public class RecipeCollectionActivityTest2 {
                                                 1)),
                                 0),
                         isDisplayed()));
-        textView.check(matches(withText("2. Melt the butter and bittersweet chocolate together in a microwave or a double boiler. If microwaving, heat for 30 seconds at a time, removing bowl and stirring ingredients in between.")));
+        textView.check(matches(withText("2. Whisk the graham cracker crumbs, 50 grams (1/4 cup) of sugar, and 1/2 teaspoon of salt together in a medium bowl. Pour the melted butter and 1 teaspoon of vanilla into the dry ingredients and stir together until evenly mixed.")));
 
     }
 

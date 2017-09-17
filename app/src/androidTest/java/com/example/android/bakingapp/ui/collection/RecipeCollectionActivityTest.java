@@ -14,15 +14,12 @@ import com.example.android.bakingapp.R;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -37,20 +34,15 @@ public class RecipeCollectionActivityTest {
 
     @Test
     public void recipeCollectionActivityTest() {
-        ViewInteraction recyclerView = onView(
-                allOf(withId(R.id.rv_recipe_collection), isDisplayed()));
-        recyclerView.perform(actionOnItemAtPosition(0, click()));
-
         ViewInteraction textView = onView(
-                allOf(withId(R.id.tv_recipe_step_short_description), withText("0. Recipe Introduction"),
+                allOf(withId(R.id.tv_recipe_name), withText("Nutella Pie"),
                         childAtPosition(
-                                allOf(withId(R.id.cv_recipe_step),
-                                        childAtPosition(
-                                                IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
-                                                0)),
-                                0),
+                                childAtPosition(
+                                        withId(R.id.cv_recipe_collection),
+                                        0),
+                                1),
                         isDisplayed()));
-        textView.check(matches(withText("0. Recipe Introduction")));
+        textView.check(matches(withText("Nutella Pie")));
 
     }
 

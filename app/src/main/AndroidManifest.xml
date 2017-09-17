@@ -20,6 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <!-- Recipe Detail Activity -->
         <activity
             android:name=".ui.details.RecipeDetailActivity"
@@ -28,6 +29,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.bakingapp.ui.collection.RecipeCollectionActivity" />
         </activity>
+
         <!-- Baking App Widget -->
         <receiver android:name=".widget.BakingAppWidgetProvider">
             <intent-filter>
@@ -38,6 +40,12 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/baking_app_widget_info" />
         </receiver>
-    </application>
 
+        <!-- Service to sync the Widget with App Data-->
+        <service android:name=".widget.SyncWidgetService" />
+
+        <!-- Service to handle the list view of the Widget -->
+        <service android:name=".widget.ListViewWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+    </application>
 </manifest>

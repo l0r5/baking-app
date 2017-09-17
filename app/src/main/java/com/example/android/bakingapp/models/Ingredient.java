@@ -4,6 +4,8 @@ package com.example.android.bakingapp.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.List;
+
 public class Ingredient implements Parcelable {
     private double quantity;
     private String measure;

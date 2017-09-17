@@ -19,7 +19,6 @@ import retrofit2.Response;
 public class RecipeCollectionActivity extends AppCompatActivity {
 
     private static final String TAG = RecipeCollectionActivity.class.getSimpleName();
-    private static final int FETCH_ALL_RECIPES_LOADER_ID = 1;
     private RecipeCollectionFragment mRecipeCollectionFragment;
 
     @Override

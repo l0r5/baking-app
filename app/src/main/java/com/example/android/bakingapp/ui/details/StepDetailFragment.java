@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.models.Step;
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.LoadControl;
@@ -36,12 +37,14 @@ import static com.example.android.bakingapp.ui.details.RecipeDetailActivity.STEP
 public class StepDetailFragment extends Fragment {
 
     private static final String TAG = StepDetailFragment.class.getSimpleName();
+    private static final String BUNDLE_EXOPLAYER_POSITION = "bundle_exoplayer_position";
     private Step mStep;
     private boolean mTwoPane;
     private SimpleExoPlayer mExoPlayer;
     private SimpleExoPlayerView mPlayerView;
     private Button mPreviousStepBtn;
     private Button mNextStepBtn;
+    private long mExoPlayerPosition = C.TIME_UNSET;
     private Bundle mSavedState = null;
 
     public static StepDetailFragment newInstance() {
@@ -61,6 +64,7 @@ public class StepDetailFragment extends Fragment {
         if (savedInstanceState != null) {
             mStep = savedInstanceState.getParcelable(STEP_BUNDLE);
             mTwoPane = savedInstanceState.getBoolean(DEVICE_CHECK);
+            mExoPlayerPosition = savedInstanceState.getLong(BUNDLE_EXOPLAYER_POSITION);
         } else {
             mStep = getArguments().getParcelable(STEP_BUNDLE);
             mTwoPane = getArguments().getBoolean(DEVICE_CHECK);
@@ -88,21 +92,23 @@ public class StepDetailFragment extends Fragment {
         super.onSaveInstanceState(outState);
         outState.putParcelable(STEP_BUNDLE, mStep);
         outState.putBoolean(DEVICE_CHECK, mTwoPane);
+        outState.putLong(BUNDLE_EXOPLAYER_POSITION, mExoPlayerPosition);
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        mExoPlayerPosition = mExoPlayer.getCurrentPosition();
         mExoPlayer.stop();
         mExoPlayer.release();
+        mExoPlayer = null;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (mStep.getVideoUrl() != null) {
-            Uri.parse(mStep.getVideoUrl());
-        }
+        if (mStep.getVideoUrl() != null)
+            initializePlayer(Uri.parse(mStep.getVideoUrl()));
     }
 
     private void initializePlayer(Uri mediaUri) {
@@ -117,6 +123,11 @@ public class StepDetailFragment extends Fragment {
             String userAgent = Util.getUserAgent(getActivity(), "HalfBaked");
             MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(
                     getActivity(), userAgent), new DefaultExtractorsFactory(), null, null);
+
+            // If the player was paused, restore it on the same position
+            if (mExoPlayerPosition != C.TIME_UNSET)
+                mExoPlayer.seekTo(mExoPlayerPosition);
+
             mExoPlayer.prepare(mediaSource);
             mExoPlayer.setPlayWhenReady(true);
         }

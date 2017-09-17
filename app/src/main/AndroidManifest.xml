@@ -13,7 +13,8 @@
         android:theme="@style/AppTheme">
 
         <!-- Recipe Collection Activity -->
-        <activity android:name=".ui.collection.RecipeCollectionActivity">
+        <activity android:name=".ui.collection.RecipeCollectionActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

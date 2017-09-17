@@ -21,7 +21,8 @@
     <dimen name="thumbnail_size">40dp</dimen>
 
     <!-- Widget Dimens -->
-    <dimen name="widget_margin">8dp</dimen>
+    <dimen name="widget_margin_m">8dp</dimen>
+    <dimen name="widget_margin_l">10dp</dimen>
     <dimen name="widget_text_margin">8dp</dimen>
 
 </resources>

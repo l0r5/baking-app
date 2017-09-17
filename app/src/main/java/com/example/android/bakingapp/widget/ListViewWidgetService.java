@@ -14,6 +14,7 @@ import com.example.android.bakingapp.models.Recipe;
 
 import static com.example.android.bakingapp.widget.BakingAppWidgetProvider.BUNDLE_RECIPE;
 import static com.example.android.bakingapp.widget.BakingAppWidgetProvider.EXTRA_RECIPE_BUNDLE;
+import static com.example.android.bakingapp.widget.BakingAppWidgetProvider.mProviderRecipe;
 
 
 public class ListViewWidgetService extends RemoteViewsService {
@@ -55,7 +56,7 @@ public class ListViewWidgetService extends RemoteViewsService {
 
         @Override
         public void onDataSetChanged() {
-
+            mRecipe = mProviderRecipe;
         }
 
         @Override

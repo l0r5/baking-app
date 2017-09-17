@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.models.Recipe;
 import com.example.android.bakingapp.ui.details.RecipeDetailActivity;
+import com.example.android.bakingapp.widget.SyncWidgetService;
 
 import java.util.ArrayList;
 
@@ -47,6 +48,9 @@ public class RecipeCollectionFragment extends Fragment implements RecipeCollecti
     public void setAllRecipes(ArrayList<Recipe> allRecipes) {
         mAllRecipes = allRecipes;
         mRecipeCollectionAdapter.setRecipeData(mAllRecipes);
+
+        //update widget
+        SyncWidgetService.startActionUpdateRecipe(getContext(), mAllRecipes);
     }
 
     @Override

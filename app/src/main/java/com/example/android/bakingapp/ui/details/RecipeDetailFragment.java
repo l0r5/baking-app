@@ -54,9 +54,6 @@ public class RecipeDetailFragment extends Fragment implements RecipeStepsAdapter
         initializeIngredientsRecyclerView(rootView, mRecipeDetails.getIngredients());
         initializeStepsRecyclerView(rootView, mRecipeDetails.getSteps());
 
-        //update widget
-        SyncWidgetService.startActionUpdateRecipe(getContext(), mRecipeDetails);
-
         return rootView;
     }
 

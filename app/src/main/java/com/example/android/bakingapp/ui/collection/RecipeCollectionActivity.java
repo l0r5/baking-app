@@ -9,6 +9,7 @@ import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.models.Recipe;
 import com.example.android.bakingapp.network.NetworkUtils;
 import com.example.android.bakingapp.network.RecipeAPI;
+import com.example.android.bakingapp.widget.SyncWidgetService;
 
 import java.util.ArrayList;
 
@@ -49,6 +50,8 @@ public class RecipeCollectionActivity extends AppCompatActivity {
                 if (retrievedRecipeData != null) {
                     Log.i(TAG, retrievedRecipeData.toString());
                     mRecipeCollectionFragment.setAllRecipes(retrievedRecipeData);
+                    //update widget
+                    SyncWidgetService.startActionUpdateRecipe(getApplicationContext(), retrievedRecipeData);
                 }
             }
 

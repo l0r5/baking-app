@@ -48,9 +48,6 @@ public class RecipeCollectionFragment extends Fragment implements RecipeCollecti
     public void setAllRecipes(ArrayList<Recipe> allRecipes) {
         mAllRecipes = allRecipes;
         mRecipeCollectionAdapter.setRecipeData(mAllRecipes);
-
-        //update widget
-        SyncWidgetService.startActionUpdateRecipe(getContext(), mAllRecipes);
     }
 
     @Override

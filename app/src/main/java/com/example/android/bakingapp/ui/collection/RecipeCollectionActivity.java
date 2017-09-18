@@ -50,8 +50,6 @@ public class RecipeCollectionActivity extends AppCompatActivity {
                 if (retrievedRecipeData != null) {
                     Log.i(TAG, retrievedRecipeData.toString());
                     mRecipeCollectionFragment.setAllRecipes(retrievedRecipeData);
-                    //update widget
-                    SyncWidgetService.startActionUpdateRecipe(getApplicationContext(), retrievedRecipeData);
                 }
             }
 

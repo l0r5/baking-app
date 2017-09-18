@@ -1,8 +1,13 @@
 package com.example.android.bakingapp.models;
 
 
+import android.graphics.Bitmap;
+import android.media.MediaMetadataRetriever;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import java.util.HashMap;
 
 public class Step implements Parcelable {
 
@@ -31,6 +36,31 @@ public class Step implements Parcelable {
 
     public String getThumbnailUrl() {
         return thumbnailURL;
+    }
+
+    public Bitmap getPictureFromThumbnailUrl() throws Throwable
+    {
+        Bitmap bitmap = null;
+        MediaMetadataRetriever mediaMetadataRetriever = null;
+        try
+        {
+            mediaMetadataRetriever = new MediaMetadataRetriever();
+            if (Build.VERSION.SDK_INT >= 14)
+                mediaMetadataRetriever.setDataSource(thumbnailURL, new HashMap<String, String>());
+            else
+                mediaMetadataRetriever.setDataSource(thumbnailURL);
+            //   mediaMetadataRetriever.setDataSource(videoPath);
+            bitmap = mediaMetadataRetriever.getFrameAtTime();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Throwable("Exception in retriveVideoFrameFromVideo(String videoPath)" + e.getMessage());
+
+        } finally {
+            if (mediaMetadataRetriever != null) {
+                mediaMetadataRetriever.release();
+            }
+        }
+        return bitmap;
     }
 
     protected Step(Parcel in) {

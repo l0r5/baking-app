@@ -1,5 +1,6 @@
 package com.example.android.bakingapp.ui.details;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
@@ -76,7 +77,12 @@ public class StepDetailFragment extends Fragment {
         mPlayerView = rootView.findViewById(R.id.pv_recipe_step_video);
 
         if (!mStep.getThumbnailUrl().equals("")) {
-            Picasso.with(thumbnail.getContext()).load(mStep.getThumbnailUrl()).into(thumbnail);
+            try {
+                Bitmap thumbnailPicture = mStep.getPictureFromThumbnailUrl();
+                thumbnail.setImageBitmap(thumbnailPicture);
+            } catch (Throwable e) {
+                e.printStackTrace();
+            }
         }
 
         initializeButtons(rootView);
